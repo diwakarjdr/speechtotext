@@ -9,8 +9,8 @@ var r=document.getElementById('result');
 function startlistening(){
     if('webkitSpeechRecognition' in window){
        var speechRecogniser=new SpeechRecognition();
-       speechRecogniser.continuous=true;
-       speechRecogniser.interimResults=true;
+       speechRecogniser.continuous=false;
+       speechRecogniser.interimResults=false;
        speechRecogniser.maxAlternatives = 1;
        var speechRecognitionList = new SpeechGrammarList();
        speechRecognitionList.addFromString(grammar, 1);
