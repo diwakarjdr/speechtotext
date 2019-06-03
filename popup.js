@@ -1,24 +1,36 @@
 var r=document.getElementById('result');
-function start(){
-    
-       var speechRecogniser=new webkitSpeechRecognition;
+function startlistening(){
+    if('webkitSpeechRecognition' in window){
+       var speechRecogniser=new webkitSpeechRecognition();
        speechRecogniser.continuous=true;
+       speechRecogniser.interimResults=true;
        speechRecogniser.lang='en-IN';
        speechRecogniser.start();
        var finalTranscripts='';
        speechRecogniser.onresult=function(event)
-       {
-           for(var i=0;i<event.results.length;i++)
+       {  var interimTranscript='';
+           for(var i=event.resultIndex;i<event.results.length;i++)
            {
                var transcript=event.results[i][0].transcript;
-               finalTranscripts+=transcript;
-               r.innerHTML=finalTranscripts;
+               transcript.replace("\n","<br>");
+               if(event.results[i].isFinal){
+                   finalTranscripts+=transcript;
+               }else{
+                   interimTranscript+=transcript;
+               }
            }
+           r.innerHTML=finalTranscripts+ '<span style = "color:#999">'+ interimTranscript + '</span>';
        };
        
 
     speechRecogniser.onerror=function(event){
-        r.innerHTML='error';
+        r.innerHTML.value='error';
     };
+}
+else{
+    r.innerHTML='browser not supported';
 
 }
+
+}
+//document.getElementById('button').addEventListener("click",startlistening);
