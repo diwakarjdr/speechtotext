@@ -31,7 +31,7 @@ document.body.onclick = function() {
   console.log('Ready to receive a color command.');
 }
 
-recognition.onresult = function(event) {
+/*recognition.onresult = function(event) {
   // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
   // The SpeechRecognitionResultList object contains SpeechRecognitionResult objects.
   // It has a getter so it can be accessed like an array
@@ -47,7 +47,25 @@ recognition.onresult = function(event) {
   diagnostic.textContent = 'Result received: ' + color + '.';
  // bg.style.backgroundColor = color;
   console.log('Confidence: ' + event.results[0][0].confidence);
-}
+}*/
+
+recognition.addEventListener('result',(event)=>{ 
+  // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
+  // The SpeechRecognitionResultList object contains SpeechRecognitionResult objects.
+  // It has a getter so it can be accessed like an array
+  // The [last] returns the SpeechRecognitionResult at the last position.
+  // Each SpeechRecognitionResult object contains SpeechRecognitionAlternative objects that contain individual results.
+  // These also have getters so they can be accessed like arrays.
+  // The [0] returns the SpeechRecognitionAlternative at position 0.
+  // We then return the transcript property of the SpeechRecognitionAlternative object
+
+  var last = event.results.length - 1;
+  var color = event.results[last][0].transcript;
+
+  diagnostic.textContent = 'Result received: ' + color + '.';
+ // bg.style.backgroundColor = color;
+  console.log('Confidence: ' + event.results[0][0].confidence);
+})
 
 recognition.onspeechend = function() {
   recognition.stop();
