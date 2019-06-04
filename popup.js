@@ -3,13 +3,13 @@ window.onload=function(){
 var startbtn=document.getElementById('start');
 var stopbtn=document.getElementById('stop');
 var input=document.getElementById('result');
-recogniser.continuous=true;
+recogniser.continuous=false;
 startbtn.onclick=function startlistening(){
     recogniser.start();
     
 }
 recogniser.onresult=function(event){
-   input.innerHTML=event.results[event.result_index][0].transcript;
+   input.innerHTML=event.results[event.resultIndex][0].transcript;
 }
 stopbtn.onclick=function stoplistening(){
    recogniser.stop();
