@@ -3,7 +3,7 @@ window.onload=function(){
 var startbtn=document.getElementById('start');
 var stopbtn=document.getElementById('stop');
 var input=document.getElementById('result');
-recogniser.continuous=false;
+recogniser.continuous=true;
 startbtn.onclick=function startlistening(){
     recogniser.start();
     
