@@ -48,7 +48,8 @@ document.body.onclick = function() {
  // bg.style.backgroundColor = color;
   console.log('Confidence: ' + event.results[0][0].confidence);
 }*/
-
+if('SpeechRecogniser.onresult' in windows)
+{
 recognition.addEventListener('result',(event)=>{ 
   // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
   // The SpeechRecognitionResultList object contains SpeechRecognitionResult objects.
@@ -76,6 +77,11 @@ recognition.onspeechend = function() {
 }*/
 
 recognition.onerror = function(event) {
-  diagnostic.textContent = 'Error occurred in recognition: ' + event.error;
+ console.log('error);
+}
+}
+else
+{
+  console.log('not compatible');
 }
 
