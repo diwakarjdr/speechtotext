@@ -48,7 +48,7 @@ document.body.onclick = function() {
  // bg.style.backgroundColor = color;
   console.log('Confidence: ' + event.results[0][0].confidence);
 }*/
-if('SpeechRecogniser.onresult' in windows)
+if('SpeechRecogniser.onresult')
 {
 recognition.addEventListener('result',(event)=>{ 
   // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
