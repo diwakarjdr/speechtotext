@@ -77,7 +77,7 @@ recognition.onspeechend = function() {
 }*/
 
 recognition.onerror = function(event) {
- console.log('error');
+ console.log('error event');
 }
 }
 else
